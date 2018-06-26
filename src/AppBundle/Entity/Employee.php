@@ -82,4 +82,9 @@ class Employee extends User
     {
         $this->university = $university;
     }
+
+    public function __toString()
+    {
+        return $this->position;
+    }
 }
