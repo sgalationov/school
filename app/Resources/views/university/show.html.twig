@@ -28,9 +28,7 @@
             <a href="{{ path('university_edit', { 'id': university.id }) }}">Edit</a>
         </li>
         <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+            <a href="{{ path('university_delete', { 'id': university.id }) }}">Delete</a>
         </li>
     </ul>
 {% endblock %}
