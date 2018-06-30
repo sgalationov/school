@@ -3,9 +3,9 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Strin;
 
 class LectureType extends AbstractType
 {
@@ -14,8 +14,13 @@ class LectureType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('status')
-            ->add('students')->add('lecturer')->add('date');
+        $builder
+            ->add('status')
+            ->add('students')
+            ->add('lecturer')
+            ->add('date', DateTimeType::class, [
+                'label' => 'Дата',
+            ]);
     }
     
     /**

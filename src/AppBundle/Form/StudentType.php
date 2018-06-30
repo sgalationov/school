@@ -13,7 +13,16 @@ class StudentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('age')->add('email')->add('role')->add('password')->add('salt')->add('name')->add('surname')->add('university');
+        $builder
+            ->add('name')
+            ->add('surname')
+            ->add('age')
+            ->add('email')
+            ->add('password')
+            ->add('role')
+            ->add('salt')
+            ->add('university');
+        $builder->setRequired(false);
     }
     
     /**
@@ -22,7 +31,7 @@ class StudentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Student'
+            'data_class' => 'AppBundle\Entity\Student',
         ));
     }
 

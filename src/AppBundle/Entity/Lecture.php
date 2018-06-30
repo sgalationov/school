@@ -11,6 +11,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Lecture
@@ -50,6 +51,8 @@ class Lecture
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
+     *
+     * @Assert\NotBlank()
      */
     protected $date;
 

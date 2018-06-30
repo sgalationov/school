@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
@@ -34,6 +35,9 @@ abstract class User implements UserInterface
     /**
      * @var string
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Email обязателен")
+     * @Assert\Email(message="Некорректный")
      */
     protected $email;
 

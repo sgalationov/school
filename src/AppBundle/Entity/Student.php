@@ -17,8 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Student extends User
 {
-
-    /**
+     /**
      * @var string|null
      * @ORM\Column(type="integer")
      */
@@ -114,6 +113,4 @@ class Student extends User
     {
         $this->university = $university;
     }
-
-
 }

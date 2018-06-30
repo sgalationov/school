@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Lecture</h1>
+    <h1>Лекция</h1>
 
     <table>
         <tbody>
@@ -10,11 +10,11 @@
                 <td>{{ lecture.id }}</td>
             </tr>
             <tr>
-                <th>Status</th>
+                <th>Статус</th>
                 <td>{{ lecture.status }}</td>
             </tr>
             <tr>
-                <th>Date</th>
+                <th>Дата</th>
                 <td>{% if lecture.date %}{{ lecture.date|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
         </tbody>
