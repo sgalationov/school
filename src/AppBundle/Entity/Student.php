@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Student
@@ -17,10 +18,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Student extends User
 {
-     /**
-     * @var string|null
-     * @ORM\Column(type="integer")
-     */
+    /**
+    * @var string|null
+    * @ORM\Column(type="integer")
+    *
+    * @Assert\NotBlank(message="Заполните возраст")
+    * @Assert\Range(min=17, minMessage="Минимальный возраст {{ limit }} лет")
+    */
     protected $age;
 
     /**
@@ -109,7 +113,7 @@ class Student extends User
     /**
      * @param University|null $university
      */
-    public function setUniversity(?University $university)
+    public function setUniversity(University $university)
     {
         $this->university = $university;
     }

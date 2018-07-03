@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>University creation</h1>
+    <h1>Создать университет</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Создать" />
     {{ form_end(form) }}
 
     <ul>
         <li>
-            <a href="{{ path('university_index') }}">Back to the list</a>
+            <a href="{{ path('university_index') }}">Назад к списку</a>
         </li>
     </ul>
 {% endblock %}

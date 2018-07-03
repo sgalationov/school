@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Subject
@@ -40,6 +41,8 @@ class Subject
     /**
      * @var integer|null
      * @ORM\Column(type="integer")
+     *
+     * @Assert\NotBlank(message="Введите количество часов")
      */
     protected $countHours;
 
@@ -111,5 +114,10 @@ class Subject
     public function setCountHours($countHours)
     {
         $this->countHours = $countHours;
+    }
+
+    public function __toString()
+    {
+        return $this->countHours.', '.$this->getCountHours();
     }
 }

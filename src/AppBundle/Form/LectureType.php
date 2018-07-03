@@ -15,12 +15,10 @@ class LectureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('status')
-            ->add('students')
-            ->add('lecturer')
-            ->add('date', DateTimeType::class, [
-                'label' => 'Дата',
-            ]);
+            ->add('status', null, ['label' => 'Статус: '])
+            ->add('students', null, ['label' => 'Студент: '])
+            ->add('lecturer', null, ['label' => 'Лектор: '])
+            ->add('date', DateTimeType::class, ['label' => 'Дата: ']);
     }
     
     /**

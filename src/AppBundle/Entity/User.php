@@ -37,37 +37,53 @@ abstract class User implements UserInterface
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank(message="Email обязателен")
-     * @Assert\Email(message="Некорректный")
+     * @Assert\Email(message="Некорректный Email")
      */
     protected $email;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Введите должность")
      */
     protected $role;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Введите пароль")
+     * @Assert\Length(
+     *     min=8,
+     *     max=20,
+     *     minMessage="Ваш пароль должен быть как минимум {{ limit }} символов",
+     *     maxMessage="Ваш пароль не должен быть длиннее {{ limit }} символов"
+     * )
      */
     protected $password;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Заполните поле")
      */
     protected $salt;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Заполните поле имя")
      */
     protected $name;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Заполните поле фамилия")
      */
     protected $surname;
 
@@ -199,4 +215,8 @@ abstract class User implements UserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
+    /*public function __toString()
+    {
+        return $this->email.', '.$this->role.', '.$this->password.', '.$this->salt.', '.$this->name.', '.$this->surname;
+    }*/
 }

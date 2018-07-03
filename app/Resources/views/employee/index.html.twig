@@ -1,12 +1,14 @@
-{% include '../menu.html.twig' %}
-
 {% extends 'base.html.twig' %}
+
+{% block include %}
+    {% include '../menu.html.twig' %}
+{% endblock %}
 
 {% block body %}
     <h1>Список сотрудников</h1>
 
-    <table>
-        <thead>
+    <table bordercolor="blue" border="1">
+        <thead align="center">
             <tr>
                 <th>Id</th>
                 <th>Имя</th>
@@ -16,10 +18,10 @@
                 <th>Пароль</th>
                 <th>Должность</th>
                 <th>Salt</th>
-                <th>Actions</th>
+                <th>Действия</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody align="center">
         {% for employee in employees %}
             <tr>
                 <td><a href="{{ path('employee_show', { 'id': employee.id }) }}">{{ employee.id }}</a></td>
@@ -33,10 +35,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('employee_show', { 'id': employee.id }) }}">show</a>
+                            <a href="{{ path('employee_show', { 'id': employee.id }) }}">Показать</a>
                         </li>
                         <li>
-                            <a href="{{ path('employee_edit', { 'id': employee.id }) }}">edit</a>
+                            <a href="{{ path('employee_edit', { 'id': employee.id }) }}">Обновить</a>
                         </li>
                     </ul>
                 </td>
@@ -47,7 +49,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('employee_new') }}">Create a new employee</a>
+            <a href="{{ path('employee_new') }}">Создать нового сотрудника</a>
         </li>
     </ul>
 {% endblock %}

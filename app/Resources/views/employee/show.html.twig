@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Сотрудник</h1>
 
-    <table>
+    <table bordercolor="blue" border="1">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -42,13 +42,13 @@
 
     <ul>
         <li>
-            <a href="{{ path('employee_index') }}">Back to the list</a>
+            <a href="{{ path('employee_index') }}">Назад к списку</a>
         </li>
         <li>
-            <a href="{{ path('employee_edit', { 'id': employee.id }) }}">Edit</a>
+            <a href="{{ path('employee_edit', { 'id': employee.id }) }}">Обновить</a>
         </li>
         <li>
-            <a href="{{ path('employee_delete', { 'id': employee.id }) }}">Delete</a>
+            <a href="{{ path('employee_delete', { 'id': employee.id }) }}">Удалить</a>
         </li>
     </ul>
 {% endblock %}

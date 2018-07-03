@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Universities list</h1>
+    <h1>Список университетов</h1>
 
-    <table>
-        <thead>
+    <table bordercolor="blue" border="1">
+        <thead align="center">
             <tr>
                 <th>Id</th>
                 <th>Название</th>
                 <th>Адрес</th>
-                <th>Actions</th>
+                <th>Действия</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody align="center">
         {% for university in universities %}
             <tr>
                 <td><a href="{{ path('university_show', { 'id': university.id }) }}">{{ university.id }}</a></td>
@@ -21,10 +21,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('university_show', { 'id': university.id }) }}">show</a>
+                            <a href="{{ path('university_show', { 'id': university.id }) }}">Показать</a>
                         </li>
                         <li>
-                            <a href="{{ path('university_edit', { 'id': university.id }) }}">edit</a>
+                            <a href="{{ path('university_edit', { 'id': university.id }) }}">Обновить</a>
                         </li>
                     </ul>
                 </td>
@@ -35,7 +35,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('university_new') }}">Create a new university</a>
+            <a href="{{ path('university_new') }}">Создать новый университет</a>
         </li>
     </ul>
 {% endblock %}

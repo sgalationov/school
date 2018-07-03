@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Лекция</h1>
 
-    <table>
+    <table bordercolor="blue" border="1">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -22,13 +22,13 @@
 
     <ul>
         <li>
-            <a href="{{ path('lecture_index') }}">Back to the list</a>
+            <a href="{{ path('lecture_index') }}">Назад к списку</a>
         </li>
         <li>
-            <a href="{{ path('lecture_edit', { 'id': lecture.id }) }}">Edit</a>
+            <a href="{{ path('lecture_edit', { 'id': lecture.id }) }}">Обновить</a>
         </li>
         <li>
-            <a href="{{ path('lecture_delete', { 'id': lecture.id }) }}">Delete</a>
+            <a href="{{ path('lecture_delete', { 'id': lecture.id }) }}">Удалить</a>
         </li>
     </ul>
 {% endblock %}
