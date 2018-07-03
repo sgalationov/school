@@ -63,7 +63,6 @@ class Subject
         $this->students = new ArrayCollection();
         $this->lecturers = new ArrayCollection();
         $this->lectures = new ArrayCollection();
-
     }
 
     /**
