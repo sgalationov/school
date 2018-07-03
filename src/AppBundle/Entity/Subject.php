@@ -27,6 +27,12 @@ class Subject
     protected $id;
 
     /**
+     * @var string|null
+     * @ORM\Column(type="string", options={"default":"название"})
+     */
+    protected $name;
+
+    /**
      * @var ArrayCollection|Student[]
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Student")
      */
@@ -46,10 +52,18 @@ class Subject
      */
     protected $countHours;
 
+    /**
+     * @var ArrayCollection|Lecture[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Lecture", cascade={"persist"}, mappedBy="subject")
+     */
+    protected $lectures;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
         $this->lecturers = new ArrayCollection();
+        $this->lectures = new ArrayCollection();
+
     }
 
     /**
@@ -120,4 +134,49 @@ class Subject
     {
         return $this->countHours.', '.$this->getCountHours();
     }
+
+    /**
+     * @return Lecture[]|ArrayCollection
+     */
+    public function getLectures()
+    {
+        return $this->lectures;
+    }
+
+    /**
+     * @param Lecture $lecture
+     */
+    public function addLecture(Lecture $lecture)
+    {
+        if (!$this->lectures->contains($lecture)) {
+            $this->lectures->add($lecture);
+        }
+    }
+
+    /**
+     * @param Lecture $lecture
+     */
+    public function removeLecture(Lecture $lecture)
+    {
+        if ($this->lectures->contains($lecture)) {
+            $this->lectures->remove($lecture);
+        }
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param null|string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
 }

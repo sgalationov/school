@@ -2,6 +2,9 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Student;
+use AppBundle\Entity\Subject;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +21,11 @@ class LectureType extends AbstractType
             ->add('status', null, ['label' => 'Статус: '])
             ->add('students', null, ['label' => 'Студент: '])
             ->add('lecturer', null, ['label' => 'Лектор: '])
-            ->add('date', DateTimeType::class, ['label' => 'Дата: ']);
+            ->add('subject', EntityType::class, [
+                'label' => 'Дисциплина',
+                'class' => Subject::class,
+        ])
+        ;
     }
     
     /**

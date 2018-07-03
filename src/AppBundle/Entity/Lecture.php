@@ -57,9 +57,16 @@ class Lecture
      */
     protected $date;
 
+    /**
+     * @var Subject|null
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Subject", inversedBy="lectures")
+     */
+    protected $subject;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
+        $this->date = new \DateTime();
     }
 
     /**
@@ -140,5 +147,26 @@ class Lecture
     public function setDate($date)
     {
         $this->date = $date;
+    }
+
+    /**
+     * @return Subject|null
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
+     * @param Subject|null $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    public function __toString()
+    {
+        return (string)$this->getId();
     }
 }
