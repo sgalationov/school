@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Subjects list</h1>
+    <h1>Список дисциплин</h1>
 
-    <table>
-        <thead>
+    <table bordercolor="blue" border="1">
+        <thead align="center">
             <tr>
                 <th>Id</th>
-                <th>Counthours</th>
-                <th>Actions</th>
+                <th>Количество часов</th>
+                <th>Действия</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody align="center">
         {% for subject in subjects %}
             <tr>
                 <td><a href="{{ path('subject_show', { 'id': subject.id }) }}">{{ subject.id }}</a></td>
@@ -19,10 +19,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('subject_show', { 'id': subject.id }) }}">show</a>
+                            <a href="{{ path('subject_show', { 'id': subject.id }) }}">Показать</a>
                         </li>
                         <li>
-                            <a href="{{ path('subject_edit', { 'id': subject.id }) }}">edit</a>
+                            <a href="{{ path('subject_edit', { 'id': subject.id }) }}">Обновить</a>
                         </li>
                     </ul>
                 </td>
@@ -33,7 +33,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('subject_new') }}">Create a new subject</a>
+            <a href="{{ path('subject_new') }}">Создать новую дисциплину</a>
         </li>
     </ul>
 {% endblock %}

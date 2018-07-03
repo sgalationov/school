@@ -13,7 +13,16 @@ class StudentType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('age')->add('email')->add('role')->add('password')->add('salt')->add('name')->add('surname')->add('university');
+        $builder
+            ->add('name', null, ['label' => 'Имя: '])
+            ->add('surname', null, ['label' => 'Фамилия: '])
+            ->add('age', null, ['label' => 'Возраст: '])
+            ->add('email', null, ['label' => 'Email: '])
+            ->add('password', null, ['label' => 'Пароль: '])
+            ->add('role')
+            ->add('salt')
+            ->add('university', null, ['label' => 'Университет: ']);
+        $builder->setRequired(false);
     }
     
     /**
@@ -22,7 +31,7 @@ class StudentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Student'
+            'data_class' => 'AppBundle\Entity\Student',
         ));
     }
 

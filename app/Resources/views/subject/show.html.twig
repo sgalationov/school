@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Subject</h1>
+    <h1>Дисциплина</h1>
 
-    <table>
+    <table bordercolor="blue" border="1">
         <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ subject.id }}</td>
             </tr>
             <tr>
-                <th>Counthours</th>
+                <th>Количество часов</th>
                 <td>{{ subject.countHours }}</td>
             </tr>
         </tbody>
@@ -18,13 +18,13 @@
 
     <ul>
         <li>
-            <a href="{{ path('subject_index') }}">Back to the list</a>
+            <a href="{{ path('subject_index') }}">Назад к списку</a>
         </li>
         <li>
-            <a href="{{ path('subject_edit', { 'id': subject.id }) }}">Edit</a>
+            <a href="{{ path('subject_edit', { 'id': subject.id }) }}">Обновить</a>
         </li>
         <li>
-            <a href="{{ path('subject_delete', { 'id': subject.id }) }}">Delete</a>
+            <a href="{{ path('subject_delete', { 'id': subject.id }) }}">Удалить</a>
         </li>
     </ul>
 {% endblock %}

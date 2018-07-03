@@ -10,6 +10,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class University
@@ -42,12 +43,16 @@ class University
     /**
      * @var string|null
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Введите название университета")
      */
     protected $name;
 
     /**
      * @var string|null
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Введите адресс")
      */
     protected $address;
 

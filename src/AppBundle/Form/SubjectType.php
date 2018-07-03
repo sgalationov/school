@@ -13,7 +13,10 @@ class SubjectType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('countHours')->add('students')->add('lecturers');
+        $builder
+            ->add('countHours', null, ['label' => 'Количество часов: '])
+            ->add('students', null, ['label' => 'Студент: '])
+            ->add('lecturers', null, ['label' => 'Лекции: ']);
     }
     
     /**

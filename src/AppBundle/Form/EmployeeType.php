@@ -13,7 +13,16 @@ class EmployeeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('position')->add('email')->add('role')->add('password')->add('salt')->add('name')->add('surname')->add('subjects')->add('university');
+        $builder
+            ->add('name', null, ['label' => 'Имя: '])
+            ->add('surname', null, ['label' => 'Фамилия: '])
+            ->add('position', null, ['label' => 'Должность: '])
+            ->add('email', null, ['label' => 'Email: '])
+            ->add('password', null, ['label' => 'Пароль: '])
+            ->add('subjects', null, ['label' => 'Дисциплина: '])
+            ->add('university', null, ['label' => 'Университет: '])
+            ->add('role')
+            ->add('salt');
     }
     
     /**

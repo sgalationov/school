@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Employee
@@ -20,12 +21,15 @@ class Employee extends User
     /**
      * @var string|null
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Заполните должность")
      */
     protected $position;
 
     /**
      * @var ArrayCollection|Subject[]
      * @ORM\ManyToMany(targetEntity="Subject")
+     *
      */
     protected $subjects;
 
@@ -78,7 +82,7 @@ class Employee extends User
     /**
      * @param University|null $university
      */
-    public function setUniversity($university)
+    public function setUniversity(University $university)
     {
         $this->university = $university;
     }
