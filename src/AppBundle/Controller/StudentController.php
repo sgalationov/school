@@ -45,6 +45,8 @@ class StudentController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $encoder = $this->get('security.password_encoder');
+            $student->setPassword($encoder->encodePassword($student, $form->get('password')->getData()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($student);
             $em->flush();

@@ -9,6 +9,8 @@
                 <th>Id</th>
                 <th>Название</th>
                 <th>Адрес</th>
+                <th>Страна</th>
+                <th>Город</th>
                 <th>Действия</th>
             </tr>
         </thead>
@@ -18,6 +20,8 @@
                 <td><a href="{{ path('university_show', { 'id': university.id }) }}">{{ university.id }}</a></td>
                 <td>{{ university.name }}</td>
                 <td>{{ university.address }}</td>
+                <td>{{ university.country }}</td>
+                <td>{{ university.city }}</td>
                 <td>
                     <ul>
                         <li>

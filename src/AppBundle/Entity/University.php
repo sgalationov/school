@@ -56,6 +56,18 @@ class University
      */
     protected $address;
 
+    /**
+     * @var string|null
+     * @ORM\Column(type="string")
+     */
+    protected $country;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string")
+     */
+    protected $city;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -142,8 +154,40 @@ class University
         $this->address = $address;
     }
 
+    /**
+     * @return null|string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param null|string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param null|string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
     public function __toString()
     {
-        return $this->getName();
+        return $this->getName(). ', ' . $this->getCountry() . ', ' . $this->getCity();
     }
 }

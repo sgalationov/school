@@ -26,6 +26,13 @@ class LectureController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $lectures = $em->getRepository(Lecture::class)->findAll();
+        /*$lecturesFind = $em->getRepository(Lecture::class)->find(2);
+        $lecturesFindBy = $em->getRepository(Lecture::class)->findBy(['status' => "Идет"]);
+        $lecturesFindOneBy = $em->getRepository(Lecture::class)->findOneBy(['status' => "Прошла"]);
+
+        var_dump($lecturesFind);
+        var_dump($lecturesFindBy);
+        var_dump($lecturesFindOneBy);*/
 
         return $this->render('lecture/index.html.twig', array(
             'lectures' => $lectures,

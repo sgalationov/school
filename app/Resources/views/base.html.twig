@@ -2,6 +2,7 @@
 <html>
 {% block header %}
     <div id="wrapper">
+        <a>Здравствуй {{ app.user.name }} {{ app.user.surname }}</a>
         <h1>МЕНЮ</h1>
         <a href="{{ path('employee_index') }}">Сотрудник</a><br>
         <a href="{{ path('lecture_index') }}">Лекции</a><br>

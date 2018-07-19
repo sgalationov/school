@@ -1,10 +1,90 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <script src="{{ asset('assets/vendor/jquery.js') }}">
+        var $collectionHolder;
+
+        // установка ссылки "добавить тег"
+        var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
+        var $newLinkLi = $('<li></li>').append($addTagLink);
+
+        jQuery(document).ready(function() {
+            // Получите ul, содержащий коллекцию тегов
+            $collectionHolder = $('ul.tags');
+
+            // добавить ссылку удаления ко всем существующим элементам li в форме тегов
+            $collectionHolder.find('li').each(function() {
+                addTagFormDeleteLink($(this));
+            });
+
+            // добавьте привязку "добавить тег" и li к тегам ul
+            $collectionHolder.append($newLinkLi);
+
+            // почитайте текущие вводы формы, которые у вас есть (например, 2) и используйте
+            // это в качестве нового индекса при вставке нового объекта (например, 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addTagLink.on('click', function(e) {
+                // предотвратите ссылку от создания "#" в URL
+                e.preventDefault();
+
+                // добавьте новую форму тега (смотрите следующий блок кода)
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+
+            function addTagForm($collectionHolder, $newLinkLi) {
+                // Получить прототип данных, объяснённый ранее
+                var prototype = $collectionHolder.data('prototype');
+
+                // получить новый индекс
+                var index = $collectionHolder.data('index');
+
+                var newForm = prototype;
+                // Вам нужно это только в случае, если вы не установили 'label', как "false" в вашем поле тегов в TaskType
+                // Заменить '__name__label__' в HTML прототипа, чтобы
+                // он был числом, основанным на том, сколько объектов у нас есть
+                // newForm = newForm.replace(/__name__label__/g, index);
+
+                // Заменить '__name__' в HTML прототипа на
+                // номер, основанный на количестве имеющихся объектов
+                newForm = newForm.replace(/__name__/g, index);
+
+                // увеличить индекс на единицу для следующего объекта
+                $collectionHolder.data('index', index + 1);
+
+                // Отобразить форму на странице в li, до ссылки Li "добавить тег"
+                var $newFormLi = $('<li></li>').append(newForm);
+                $newLinkLi.before($newFormLi);
+
+                // добавить ссылку удаления к новой форме
+                addTagFormDeleteLink($newFormLi);
+            }
+
+            function addTagFormDeleteLink($tagFormLi) {
+                var $removeFormA = $('<a href="#">delete this tag</a>');
+                $tagFormLi.append($removeFormA);
+
+                $removeFormA.on('click', function(e) {
+                    // предотвратить ссылку от создания "#" в URL
+                    e.preventDefault();
+
+                    // удалить li в форме тегов
+                    $tagFormLi.remove();
+                });
+            }
+        });
+    </script>
+
     <h1>Создать дисциплину</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
+        <ul class="tags" data-prototype="{{ form_widget(form.lectures.vars.prototype)|e('html_attr') }}">
+            {% for lecture in form.lectures %}
+                <li>{{ form_widget(lecture) }}</li>
+            {% endfor %}
+        </ul>
+
         <input type="submit" value="Создать" />
     {{ form_end(form) }}
 

@@ -21,8 +21,12 @@ class SubjectType extends AbstractType
             ->add('students', null, ['label' => 'Студент: '])
             ->add('lecturers', null, ['label' => ' Лектор: '])
             ->add('lectures', CollectionType::class, [
+                'label' => ' ЛЕКЦИИ',
                 'entry_type' => LectureType::class,
                 'entry_options' => array('label' => false),
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
             ])
         ;
     }

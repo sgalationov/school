@@ -15,7 +15,9 @@ class UniversityType extends AbstractType
     {
         $builder
             ->add('name', null, ['label' => 'Название: '])
-            ->add('address', null, ['label' => 'Адресс: ']);
+            ->add('address', null, ['label' => 'Адресс: '])
+            ->add('country', null, ['label' => 'Страна: '])
+            ->add('city', null, ['label' => 'Город: ']);
     }
     
     /**
