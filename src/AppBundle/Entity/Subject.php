@@ -8,6 +8,7 @@
 
 namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -102,6 +103,8 @@ class Subject
      */
     public function getLecturers()
     {
+        /*$criteria = Criteria::create();
+        $criteria->andWhere(Criteria::expr()->)*/
         return $this->lecturers;
     }
 
@@ -160,6 +163,7 @@ class Subject
         if ($this->lectures->contains($lecture)) {
             $this->lectures->remove($lecture);
         }
+        //$this->lectures->removeElement($lecture);
     }
 
     /**
@@ -177,5 +181,4 @@ class Subject
     {
         $this->name = $name;
     }
-
 }

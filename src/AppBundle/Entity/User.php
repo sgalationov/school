@@ -23,7 +23,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 abstract class User implements UserInterface
 {
-
     /**
      * @var integer
      * @ORM\Column(type="integer")

@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Subject;
 use AppBundle\Form\SubjectType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -77,12 +78,43 @@ class SubjectController extends Controller
      * @Route("/{id}/edit", name="subject_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Subject $subject)
+    public function editAction(Request $request, Subject $subject, $id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $subject = $em->getRepository(Subject::class)->find($id);
+
+        if (!$subject) {
+            throw $this->createNotFoundException('No task found for id '.$id);
+        }
+
+        $originalLectures = new ArrayCollection();
+
+        // Создать ArrayCollection текущих объектов Tag в БД
+        foreach ($subject->getLectures() as $lecture) {
+            $originalLectures->add($lecture);
+        }
+
         $editForm = $this->createForm(SubjectType::class, $subject);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            // удалить отошения между тегом и Task
+            foreach ($originalLectures as $lecture) {
+                if (false === $subject->getSubjects()->contains($lecture)) {
+                    // удалить Task из Tag
+                    $lecture->getSubject()->removeElement($subject);
+
+                    // если это было отношение многие-к-одному, удалить отношения, как это
+                    // $tag->setTask(null);
+
+                    $em->persist($lecture);
+
+                    // если вы хотите удалить Tag полностью, вы также можете это сделать
+                    // $em->remove($tag);
+                }
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('subject_edit', array('id' => $subject->getId()));
