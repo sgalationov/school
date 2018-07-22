@@ -33,6 +33,32 @@ class StudentController extends Controller
     }
 
     /**
+     * Lists all student entities.
+     *
+     * @Route("/print", name="student_print")
+     * @Method("GET")
+     */
+    public function printAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $students = $em->getRepository(Student::class)->findAll();
+
+        $pdf = $this
+            ->get("white_october.tcpdf")
+            ->create('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $format = '90x130';
+        $filename = "Бейджи участников ".$format;
+        $pdf->AddPage('L', explode('x', $format));
+        $html = $this->renderView('student/list.html.twig', array(
+            'students' => $students,
+        ));
+        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
+
+        return $pdf->Output($filename . '.pdf', 'I');
+    }
+
+    /**
      * Creates a new student entity.
      *
      * @Route("/new", name="student_new")
